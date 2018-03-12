@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="102px" height="102px" viewBox="0 0 102 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Development_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Final-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Development-icon" transform="translate(11.000000, 11.000000)" stroke="#AC52BF">
+            <g id="development">
+                <path d="M61.6837782,56.3301425 C71.7995482,56.3301425 80,48.1318486 80,38.0187405 C80,27.9056324 71.7995482,19.7073385 61.6837782,19.7073385 C60.1707077,19.7073385 58.7004882,19.8907573 57.2941524,20.2365678 C57.4263289,19.3677745 57.4948665,18.4780775 57.4948665,17.5723768 C57.4948665,7.86742108 49.6253747,0 39.9178645,0 C30.2103543,0 22.3408624,7.86742108 22.3408624,17.5723768 C22.3408624,18.4638194 22.4072591,19.3397584 22.5353781,20.1955205 C21.1808496,19.8762606 19.7682678,19.7073385 18.3162218,19.7073385 C8.20045181,19.7073385 0,27.9056324 0,38.0187405 C0,48.1318486 8.20045181,56.3301425 18.3162218,56.3301425 M36.347187,34.7819284 L36.3471876,34.781932" id="Combined-Shape-Copy-7" stroke-width="2"></path>
+                <path d="M39.7890574,78.5051292 L39.7890574,29.2149705" id="Line-Copy-39" stroke-linecap="square"></path>
+                <polyline id="Line-Copy-40" stroke-linecap="square" points="67.4797841 66.8018355 51.8208287 66.8018354 51.8208287 38.8995911"></polyline>
+                <polyline id="Line-Copy-41" stroke-linecap="square" transform="translate(20.940340, 52.850713) scale(-1, 1) translate(-20.940340, -52.850713) " points="28.7698177 66.8018355 13.1108623 66.8018354 13.1108623 38.8995911"></polyline>
+                <polyline id="Rectangle-12-Copy-6" transform="translate(39.749302, 30.406856) rotate(-90.000000) translate(-39.749302, -30.406856) " points="37.5019325 25.9106736 41.9966709 30.4068556 41.9966709 30.4068556 37.5019325 34.9030376"></polyline>
+                <polyline id="Rectangle-12-Copy-7" transform="translate(51.672280, 39.980243) rotate(-90.000000) translate(-51.672280, -39.980243) " points="49.4249107 35.4840607 53.9196491 39.9802427 53.9196491 39.9802427 49.4249107 44.4764247"></polyline>
+                <polyline id="Rectangle-12-Copy-8" transform="translate(28.935438, 39.980243) rotate(-90.000000) translate(-28.935438, -39.980243) " points="26.6880686 35.4840607 31.1828069 39.9802427 31.1828069 39.9802427 26.6880686 44.4764247"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Avoiding problems with CSS at scale: A look at CSS in JS</title>
+
+  <link rel="icon" type="image/x-icon" href="mc2/images/favicon.ico">
+
+  <link rel="stylesheet" href="mc2/styles/print.css">
+<link rel="stylesheet" href="mc2/styles/print-code.css">
+  
+</head>
+<body>
+
+<div id="bodycontainer">
+  <div id="frontpage">
+    <h1>Avoiding problems with CSS at scale: A look at CSS in JS</h1>
+    <div class="splash"></div>
+    <img class="logo" src="mc2/images/edument_logo_blue.svg">
+  </div>
+  <div id="footer">
+    <span id="delivery"></span>
+    <span id="copyright">&copy; Edument 2018</span>
+  </div>
+  <div id="overview">
+    <h2>Course overview</h2>
+    <div class="overviewlist"><div class="detailedoverview"><div><h4><span>1.</span> Avoiding problems with CSS at scale</h4><ol><li>The main problems</li><li>CSS in JS</li><li>CSS in JS libraries</li></ol></div></div><div></div></div>
+  </div>
+  <div id="slides">
+    <div class="chaptercontainer">
+  <div class="chapterstart">
+    <span>chapter 1 / 1</span>
+    <h2>Avoiding problems with CSS at scale</h2>
+    <p>A look at CSS in JS</p>
+</p>
+  </div>
+  <section class="slide">
+
+<div class="slidecontent"><p><img class="transparent-background-image" src="resources/Edument-logo-inverted.png"></p>
+</div></section><section class="slide">
+
+<div class="slidecontent"><div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <img class="transparent-background-image" src="resources/education_icon.svg">
+      <br>
+      Education
+    </div>
+    <div class="col-4">
+      <img class="transparent-background-image" src="resources/codebuddy_icon.svg">
+      <br>
+      CodeBuddy
+    </div>
+    <div class="col-4">
+      <img class="transparent-background-image" src="resources/development_icon.svg">
+      <br>
+      Concept &amp; Product Development
+    </div>
+  </div>
+</div></div></section>
+  <div class="chaptersectionlist">
+  <h3>Sections in this chapter:</h3>
+  <ul>
+    <li>1. The main problems</li>
+<li>2. CSS in JS</li>
+<li>3. CSS in JS libraries</li>
+  </ul>
+</div>
+
+  <div class="chaptersections">
+    <section class="chaptersection">
+  <section class="sectionheader">
+    <div>
+      <h3><span>1-1.</span> The main problems</h3>
+      
+    </div>
+  </section>
+  <section class="slide" data-pos="1-1-1">
+<span class="pos">1-1-1</span>
+<div class="slidecontent"><p>Global namespace</p>
+<p><pre><code><span class="hljs-selector-class">.button</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-2">
+<span class="pos">1-1-2</span>
+<div class="slidecontent"><p>Isolation</p>
+<p>No matter how well we try to isolate our styles, we always run the risk of
+having our styles overridden by someone else</p>
+</div></section><section class="slide" data-pos="1-1-3">
+<span class="pos">1-1-3</span>
+<div class="slidecontent"><p><pre><code><span class="hljs-selector-class">.user-button</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+
+&lt;!<span class="hljs-selector-tag">--</span> <span class="hljs-selector-tag">later</span> <span class="hljs-selector-tag">in</span> <span class="hljs-selector-tag">the</span> <span class="hljs-selector-tag">code</span> <span class="hljs-selector-tag">--</span>&gt;
+
+<span class="hljs-selector-class">.user-button</span> {
+    <span class="hljs-attribute">background-color</span>: pink;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-4">
+<span class="pos">1-1-4</span>
+<div class="slidecontent"><p><pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"user-message"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"user-button"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre></p>
+<p><pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"user-form"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"user-button"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-5">
+<span class="pos">1-1-5</span>
+<div class="slidecontent"><p>Dependencies</p>
+<p><pre><code><span class="hljs-selector-class">.main-section</span> {
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-6">
+<span class="pos">1-1-6</span>
+<div class="slidecontent"><p><pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"main-content"</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-7">
+<span class="pos">1-1-7</span>
+<div class="slidecontent"><p>Dead Code Elimination</p>
+<p><pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel"</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre></p>
+<p><small>Let&#39;s say we delete the above markup. Can we be certain that it is safe to delete the class associated
+with it? It may be used somewhere else on the site.</small></p>
+</div></section><section class="slide" data-pos="1-1-8">
+<span class="pos">1-1-8</span>
+<div class="slidecontent"><p>Sharing Constants</p>
+</div></section><section class="slide" data-pos="1-1-9">
+<span class="pos">1-1-9</span>
+<div class="slidecontent"><p>Non-Deterministic Resolution</p>
+<p><pre><code><span class="hljs-selector-class">.button-green</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+
+<span class="hljs-selector-class">.button-red</span> {
+    <span class="hljs-attribute">background-color</span>: red;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-10">
+<span class="pos">1-1-10</span>
+<div class="slidecontent"><p>The background color of the button may vary depending on which page it is located in.</p>
+<p>In index.html
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button-green button-red"</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-11">
+<span class="pos">1-1-11</span>
+<div class="slidecontent"><p>Due to how specificity works, the latter rule will win. But which class will be
+applied in the previous example?</p>
+</div></section><section class="slide" data-pos="1-1-12">
+<span class="pos">1-1-12</span>
+<div class="slidecontent"><p>One way to solve this is to increase the specificity of the rule</p>
+<p><pre><code><span class="hljs-selector-tag">section</span> &gt; <span class="hljs-selector-class">.button-green</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-1-13">
+<span class="pos">1-1-13</span>
+<div class="slidecontent"><p>But, where do we stop?</p>
+<p><pre><code><span class="hljs-selector-tag">body</span> &gt; <span class="hljs-selector-tag">section</span> &gt; <span class="hljs-selector-class">.button-green</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section>
+</section>
+<section class="chaptersection">
+  <section class="sectionheader">
+    <div>
+      <h3><span>1-2.</span> CSS in JS</h3>
+      
+    </div>
+  </section>
+  <section class="slide" data-pos="1-2-1">
+<span class="pos">1-2-1</span>
+<div class="slidecontent"><p>What is CSS in JS?</p>
+</div></section><section class="slide" data-pos="1-2-2">
+<span class="pos">1-2-2</span>
+<div class="slidecontent"><p><strong>NOT</strong> inline styles</p>
+</div></section><section class="slide" data-pos="1-2-3">
+<span class="pos">1-2-3</span>
+<div class="slidecontent"><p>Write your CSS using JavaScript</p>
+<ul>
+<li>Colocate styles with the component</li>
+</ul>
+</div></section><section class="slide" data-pos="1-2-4">
+<span class="pos">1-2-4</span>
+<div class="slidecontent"><p>No more global namespace</p>
+<ul>
+<li>No time spent on naming classes</li>
+</ul>
+</div></section><section class="slide" data-pos="1-2-5">
+<span class="pos">1-2-5</span>
+<div class="slidecontent"><p>Easy to locate dependencies</p>
+<ul>
+<li>We import and export modules/constants</li>
+</ul>
+</div></section><section class="slide" data-pos="1-2-6">
+<span class="pos">1-2-6</span>
+<div class="slidecontent"><p>Dead code elimination</p>
+<ul>
+<li>Dead code never gets to the browser</li>
+</ul>
+</div></section><section class="slide" data-pos="1-2-7">
+<span class="pos">1-2-7</span>
+<div class="slidecontent"><p>Sharing constants</p>
+<ul>
+<li>Constants are shared across components</li>
+</ul>
+</div></section><section class="slide" data-pos="1-2-8">
+<span class="pos">1-2-8</span>
+<div class="slidecontent"><p>Non-deterministic Resolution</p>
+<ul>
+<li>Styles are loaded with the component</li>
+</ul>
+</div></section><section class="slide" data-pos="1-2-9">
+<span class="pos">1-2-9</span>
+<div class="slidecontent"><p>Isolation</p>
+<ul>
+<li>The CSS is isolated in the component</li>
+</ul>
+</div></section>
+</section>
+<section class="chaptersection">
+  <section class="sectionheader">
+    <div>
+      <h3><span>1-3.</span> CSS in JS libraries</h3>
+      
+    </div>
+  </section>
+  <section class="slide" data-pos="1-3-1">
+<span class="pos">1-3-1</span>
+<div class="slidecontent"><p>Two types:</p>
+<ul>
+<li>Template strings</li>
+<li>Objects</li>
+</ul>
+</div></section><section class="slide" data-pos="1-3-2">
+<span class="pos">1-3-2</span>
+<div class="slidecontent"><p>A template string is a feature of ES6. They allow us to use strings spanning
+over multiple lines instead of concatenating them</p>
+<p><pre><code><span class="hljs-keyword">let</span> templateString = <span class="hljs-string">`
+I love
+cupcakes
+`</span>;
+
+<span class="hljs-keyword">let</span> oldString = <span class="hljs-string">'/n'</span> +
+<span class="hljs-string">'I love/n'</span> +
+<span class="hljs-string">'cupcakes/n'</span>;
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-3">
+<span class="pos">1-3-3</span>
+<div class="slidecontent"><p>It also gives us the ability to inline code, <em>within the string</em></p>
+<p><pre><code><span class="hljs-keyword">let</span> pastry = <span class="hljs-string">'cupcake'</span>;
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`I love <span class="hljs-subst">${pastry}</span>`</span>); <span class="hljs-comment">//Outputs "I love cupcakes"</span>
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-4">
+<span class="pos">1-3-4</span>
+<div class="slidecontent"><p>A <em>tagged template string</em> is a function that takes a template string as an argument. This
+function needs to be defined before being used.</p>
+<p><pre><code><span class="hljs-keyword">let</span> pastry = <span class="hljs-string">'cupcakes'</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">strings, value</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Strings:'</span>, strings);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Value:'</span>, value);
+}
+
+print<span class="hljs-string">`I love <span class="hljs-subst">${pastry}</span>`</span> <span class="hljs-comment">//Outputs I love cupcakes</span>
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-5">
+<span class="pos">1-3-5</span>
+<div class="slidecontent"><p><strong><code>styled-components</code></strong></p>
+<ul>
+<li>Uses ES6 template strings</li>
+<li>Common CSS syntax</li>
+<li>Theming support</li>
+</ul>
+</div></section><section class="slide" data-pos="1-3-6">
+<span class="pos">1-3-6</span>
+<div class="slidecontent"><p>Example styled-components</p>
+<p><pre><code><span class="hljs-keyword">const</span> Button = styled.button<span class="hljs-string">`
+      background-color: green;
+      &amp;:hover {
+          background-color: red;
+      }
+`</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+    render() {
+      <span class="hljs-keyword">return</span> (
+          <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+          )
+    }
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-7">
+<span class="pos">1-3-7</span>
+<div class="slidecontent"><p>Old way
+<pre><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></p>
+<p><pre><code><span class="hljs-selector-class">.button</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-8">
+<span class="pos">1-3-8</span>
+<div class="slidecontent"><p>With <code>styled-components</code> the CSS rules are automatically vendor prefixed.</p>
+</div></section><section class="slide" data-pos="1-3-9">
+<span class="pos">1-3-9</span>
+<div class="slidecontent"><p><strong><code>aphrodite</code></strong></p>
+<ul>
+<li>Khan Academy</li>
+<li>Uses objects</li>
+<li>Server-side rendering</li>
+</ul>
+</div></section><section class="slide" data-pos="1-3-10">
+<span class="pos">1-3-10</span>
+<div class="slidecontent"><p>Example aphrodite</p>
+<p>CSS in JS way
+<pre><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{css(styles.button)}</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+
+<span class="hljs-keyword">const</span> styles = StyleSheet.create({
+    <span class="hljs-attr">button</span>: {
+        <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">'green'</span>,
+        <span class="hljs-string">':hover'</span>: { <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">'red'</span> },
+    },
+});
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-11">
+<span class="pos">1-3-11</span>
+<div class="slidecontent"><p>Old way
+<pre><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></p>
+<p><pre><code><span class="hljs-selector-class">.button</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-12">
+<span class="pos">1-3-12</span>
+<div class="slidecontent"><p><strong><code>glamorous</code></strong></p>
+<ul>
+<li>Uses objects</li>
+<li>Server-side rendering</li>
+<li>Theming support</li>
+</ul>
+</div></section><section class="slide" data-pos="1-3-13">
+<span class="pos">1-3-13</span>
+<div class="slidecontent"><p>Example glamorous</p>
+<p><pre><code><span class="hljs-keyword">const</span> Button = glamorous.button({
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">'green'</span>,
+    <span class="hljs-string">'&amp;:hover'</span>: {
+        <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">'red'</span>
+    },
+});
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">return</span> () {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        )
+    }
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-14">
+<span class="pos">1-3-14</span>
+<div class="slidecontent"><p>Old way
+<pre><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></p>
+<p><pre><code><span class="hljs-selector-class">.button</span> {
+    <span class="hljs-attribute">background-color</span>: green;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.5em</span>;
+}
+</code></pre></p>
+</div></section><section class="slide" data-pos="1-3-15">
+<span class="pos">1-3-15</span>
+<div class="slidecontent"><p>Thank you!</p>
+<p>Want to take a course in Malmö?</p>
+<ul>
+<li>The New Angular</li>
+<li>ReactJS</li>
+<li>JavaScript Foundation</li>
+</ul>
+</div></section>
+</section>
+
+  </div>
+  
+</div>
+
+  </div>
+  <div id="indexes">
+    
+  </div>
+</div>
+<script type="text/javascript" src="/reload/reload.js"></script>
+</body>
+</html>

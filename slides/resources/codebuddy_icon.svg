@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="102px" height="102px" viewBox="0 0 102 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>CodeBuddy_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="94" height="68"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="94" height="68" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="0" y="0" width="94" height="12.1900648"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="94" height="12.1900648" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Final-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Code-buddy-icon" transform="translate(4.000000, 17.000000)">
+            <g id="code-buddy">
+                <use id="Rectangle-10-Copy" stroke="#FF537C" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                <use id="Rectangle-10-Copy-2" stroke="#FF537C" mask="url(#mask-4)" stroke-width="2" xlink:href="#path-3"></use>
+                <polyline id="Rectangle-12-Copy-2" stroke="#FF537C" points="31.8863598 48.7944118 21.1975117 38.0559532 21.1975117 38.0559532 31.8863598 27.3174946"></polyline>
+                <polyline id="Rectangle-12-Copy-3" stroke="#FF537C" points="62.5692068 27.1706263 73.3702498 38.0218006 73.3702498 38.0218006 62.5692068 48.8729748"></polyline>
+                <path d="M54.748056,21.3693305 L39.251944,54.7084233" id="Line-Copy-34" stroke="#FF537C" stroke-linecap="square"></path>
+                <path d="M24.340591,6.5 L72.5834268,6.5" id="Line-Copy-35" stroke="#FF537C" stroke-linecap="square"></path>
+                <path d="M79.7406604,6.5 L87.0621175,6.5" id="Line-Copy-36" stroke="#FF537C" stroke-linecap="square"></path>
+                <ellipse id="Oval-3-Copy-3" fill="#FF537C" cx="5.61746031" cy="6.66800962" rx="1.08557851" ry="1.11600766"></ellipse>
+                <ellipse id="Oval-3-Copy-4" fill="#FF537C" cx="9.96466071" cy="6.66800962" rx="1.08557851" ry="1.11600766"></ellipse>
+                <ellipse id="Oval-3-Copy-5" fill="#FF537C" cx="14.3118611" cy="6.66800962" rx="1.08557851" ry="1.11600766"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>
